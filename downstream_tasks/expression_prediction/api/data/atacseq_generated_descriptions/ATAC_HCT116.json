@@ -1,0 +1,15 @@
+{
+    "Characteristics [Category]": "bulk ATAC-seq chromatin accessibility profiling of a human colorectal carcinoma cell line",
+    "Chracteristics [Species]": "Human (Homo sapiens)",
+    "Characteristics [Sex]": "male",
+    "Characteristics [Age]": "adult",
+    "Characteristics [Cell lot]": "NaN",
+    "Characteristics [replicas]": "biological replicates",
+    "Material Type": "Bulk Assay for Transposase-Accessible Chromatin using sequencing (bulk ATAC-seq) on HCT116 cells, a human colorectal carcinoma-derived epithelial cell line used as a model of colorectal cancer and transcriptional regulation.",
+    "Comment [organism]": "Homo sapiens",
+    "Parameter [dna_extraction]": "Bulk ATAC-seq nuclei preparation from a population of cultured cells: intact nuclei are isolated, permeabilized, and incubated with Tn5 transposase to tag accessible chromatin before PCR amplification and sequencing.",
+    "genome": "GRCh38",
+    "Characteristics [Cell type]": "HCT116",
+    "Characteristics [Tissue]": "colon",
+    "id": "BulkATAC_HCT116"
+  }
