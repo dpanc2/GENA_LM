@@ -9,6 +9,7 @@ PYTHON="${GENA_PYTHON:-python}"
 REPO_ROOT="${GENA_REPO_ROOT:-$(cd "$SCRIPT_DIR/../../.." && pwd)}"
 ASSET_ROOT="${GENA_ASSET_ROOT:-/home/jovyan/dpanc/benchmarking/GENA_LM}"
 KOMAREK_ROOT="${KOMAREK_ROOT:-/home/jovyan/dpanc/komarek}"
+CACHE_ROOT="${GENA_CACHE_ROOT:-$ASSET_ROOT/cache}"
 SCRIPT="$REPO_ROOT/downstream_tasks/expression_prediction/atac_seq_predictions/predict_atac_whole_komar.py"
 
 BED="${GENA_BED:-$KOMAREK_ROOT/data/AsteI2_win10000_slide1000_whole_genome.bed}"
@@ -23,12 +24,18 @@ if [[ -n "${GENA_LIMIT:-}" ]]; then
     LIMIT_ARGS=(--limit "$GENA_LIMIT")
 fi
 
-mkdir -p "$OUTPUT_DIR"
+export TMPDIR="$CACHE_ROOT/tmp"
+export TRITON_CACHE_DIR="$CACHE_ROOT/triton"
+export TORCHINDUCTOR_CACHE_DIR="$CACHE_ROOT/torchinductor"
+export TOKENIZERS_PARALLELISM=false
+
+mkdir -p "$OUTPUT_DIR" "$TMPDIR" "$TRITON_CACHE_DIR" "$TORCHINDUCTOR_CACHE_DIR"
 
 echo "GPU: $GPU_ID"
 echo "Condition: $CONDITION"
 echo "BED: $BED"
 echo "bigWig: $BIGWIG"
+echo "cache: $CACHE_ROOT"
 
 CUDA_VISIBLE_DEVICES="$GPU_ID" "$PYTHON" "$SCRIPT" \
     --bed "$BED" \
